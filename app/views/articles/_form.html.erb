@@ -1,0 +1,24 @@
+<% if @article.errors.any? %>
+    <h2>Mensaje de error</h2>
+    <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_with(model: @article, local: true) do |f| %>
+    <p> 
+        <%= f.label :title %> <br/> <!-- f es el formulario, label sirve para  
+generar una etiqueta HTML <label> asociada al campo :title, lo que mejora la accesibilidad y la experiencia del usuario al hacer clic en el texto del label para enfocar el campo correspondiente.
+-->
+        <%= f.text_field :title %>
+    </p>
+
+    <p> 
+        <%= f.label :description %> <br/>
+        <%= f.text_area :description %>
+    </p>
+    <p> 
+        <%= f.submit %>
+    </p>
+<% end %>
