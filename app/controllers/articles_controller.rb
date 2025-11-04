@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
             flash[:notice] = "Article was created successfully."
             redirect_to article_path(@article)
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
     def edit 
@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
             flash[:notice] = "Article was updated successfully."
             redirect_to article_path(@article)
         else
-            render :edit
+            render :edit, status: :unprocessable_entity #El ultimo es para que no pierda los errores de validacion al renderizar la vista
         end
     end
     def destroy

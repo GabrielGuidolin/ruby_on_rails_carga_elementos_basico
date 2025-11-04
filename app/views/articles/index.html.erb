@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-footer text-body-secondary">
                             <small>
-                                Create <%= time_ago_in_words(article.created_at)%> ago, edited ago <%= time_ago_in_words(article.updated_at) %>
+                                Creado hace <%= time_ago_in_words(article.created_at).gsub("days", "días")%>, editado hace<%= time_ago_in_words(article.updated_at).gsub("days", "días") %>
                             </small>
                         </div>
                     </div>

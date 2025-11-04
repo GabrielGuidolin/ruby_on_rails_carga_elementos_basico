@@ -1,27 +1,34 @@
-<% if @article.errors.any? %>
-    <h2>Mensaje de error</h2>
-    <ul>
-        <% @article.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-    </ul>
-<% end %>
-<%= form_with(model: @article, local: true) do |f| %>
-    <div class="form-group row"> 
-        <%= f.label :Titulo, class: "col-2 col-form-label" %> <br/> <!-- f es el formulario, label sirve para generar una etiqueta HTML <label> asociada al campo :title, lo que mejora la accesibilidad y la experiencia del usuario al hacer clic en el texto del label para enfocar el campo correspondiente.-->
+<div class="container">
+    <% if @article.errors.any? %>
+        <h2>Mensaje de error</h2>
+        <ul>
+            <% @article.errors.full_messages.each do |msg| %>
+                <li><%= msg.gsub("Title can't be blank", "El Titulo no puede estar en blanco").gsub("Title is too short (minimum is 5 characters)", "Titulo demaciado corto") %></li>
+            <% end %>
+        </ul>
+    <% end %>
+    <div class="row justify-content-center">
         <div class="col-10">
-            <%= f.text_field :title, class: "form-control" %>
-        </div>
-    </div>
+            <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+                <div class="form-group row"> 
+                    <%= f.label :titulo, class: "col-2 col-form-label text-light" %>  <!-- f es el formulario, label sirve para generar una etiqueta HTML <label> asociada al campo :title, lo que mejora la accesibilidad y la experiencia del usuario al hacer clic en el texto del label para enfocar el campo correspondiente.-->
+                    <div class="col-10 mt-2">
+                        <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Titulo del Articulo" %>
+                    </div>
+                </div>
 
-    <div class="form-group row"> 
-        <%= f.label :description, class: "col-2 col-form-label" %> <br/>
-        <div class="col-10">
-            <%= f.text_area :description, rows: 5, class: "form-control" %>
+                <div class="form-group row"> 
+                    <%= f.label :descripción, class: "col-2 col-form-label text-light" %> 
+                    <div class="col-10 mt-2">
+                        <%= f.text_area :description, rows: 5, class: "form-control shadow rounded", placeholder: "Descripción del Articulo" %>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4 text-center"> 
+                    <%= f.submit "Subir articulo", class: "btn btn-outline-light btn-lg" %>
+                </div>
+            <% end %>
         </div>
+        <%= link_to 'Cancelar', articles_path, class: "text-info text-center" %>
     </div>
-    <div class="form-group row"> 
-        <%= f.submit class: "btn btn-outline-light btn-lg" %>
-    </div>
-<% end %>
-<%= link_to 'Back', articles_path %>
+</div>
