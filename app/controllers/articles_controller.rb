@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
     end
     def create
         @article = Article.new(article_params)  #Usamos article_params para permitir solo los parametros permitidos
+        @article.user = User.first  #Temporalmente asignamos el primer usuario como el autor del articulo
         if @article.save
             flash[:notice] = "Article was created successfully."
             redirect_to article_path(@article)
