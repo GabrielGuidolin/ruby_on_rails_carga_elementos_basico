@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <%= render 'shared/errors', obj: @user%>
+            <%= form_with(model: @user, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+                <div class="form-group row"> 
+                    <%= f.label :name, class: "col-2 col-form-label text-light" %>  <!-- f es el formulario, label sirve para generar una etiqueta HTML <label> asociada al campo :title, lo que mejora la accesibilidad y la experiencia del usuario al hacer clic en el texto del label para enfocar el campo correspondiente.-->
+                    <div class="col-10 mt-2">
+                        <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Nombre de usuario" %>
+                    </div>
+                </div>
+
+                <div class="form-group row"> 
+                    <%= f.label :email, class: "col-2 col-form-label text-light" %> 
+                    <div class="col-10 mt-2">
+                        <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Correo electronico" %>
+                    </div>
+                </div>
+
+                <div class="form-group row"> 
+                    <%= f.label :password, class: "col-2 col-form-label text-light" %> 
+                    <div class="col-10 mt-2">
+                        <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "Contraseña" %>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 text-center"> 
+                    <%= f.submit "Registrar", class: "btn btn-outline-light btn-lg" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="mb-3">
+            <%= link_to 'Cancelar', articles_path, class: "text-info text-center" %>
+        </div>
+    </div>
+</div>

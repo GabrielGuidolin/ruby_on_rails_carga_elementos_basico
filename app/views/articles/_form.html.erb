@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-10">
-            <%= render 'shared/errors'%>
+            <%= render 'shared/errors', obj: @article%>
             <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
                 <div class="form-group row"> 
                     <%= f.label :titulo, class: "col-2 col-form-label text-light" %>  <!-- f es el formulario, label sirve para generar una etiqueta HTML <label> asociada al campo :title, lo que mejora la accesibilidad y la experiencia del usuario al hacer clic en el texto del label para enfocar el campo correspondiente.-->
